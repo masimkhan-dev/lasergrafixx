@@ -1,0 +1,323 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * LASER GRAFIX design system.
+ * Bold Lotus system: calm aqua and sage surfaces with decisive raspberry actions.
+ * Public and POS share Sora + Manrope for a crisp, clinical identity.
+ * All colors are oklch tokens. Never hardcode colors in components.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+
+  --font-display: "Sora", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-hover: var(--primary-hover);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+
+  --color-ink: var(--ink);
+  --color-ink-foreground: var(--ink-foreground);
+  --color-lotus-aqua: var(--lotus-aqua);
+  --color-lotus-bluegray: var(--lotus-bluegray);
+  --color-lotus-sage: var(--lotus-sage);
+  --color-lotus-charcoal: var(--lotus-charcoal);
+  --color-lotus-raspberry: var(--lotus-raspberry);
+  --color-lotus-lilac: var(--lotus-lilac);
+
+  --color-pos-bg: var(--pos-bg);
+  --color-pos-card: var(--pos-card);
+  --color-pos-sidebar: var(--pos-sidebar);
+  --color-pos-sidebar-text: var(--pos-sidebar-text);
+  --color-pos-sidebar-active: var(--pos-sidebar-active);
+  --color-pos-text: var(--pos-text);
+  --color-pos-text-muted: var(--pos-text-muted);
+  --color-pos-border: var(--pos-border);
+
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --color-invoice-paper: var(--invoice-paper);
+  --color-invoice-ink: var(--invoice-ink);
+  --color-invoice-muted: var(--invoice-muted);
+  --color-invoice-line: var(--invoice-line);
+  --color-invoice-head: var(--invoice-head);
+  --color-invoice-head-foreground: var(--invoice-head-foreground);
+  --color-invoice-gold: var(--invoice-gold);
+
+  --shadow-card: 0 1px 2px oklch(0.456 0.024 150 / 0.08), 0 8px 24px -18px oklch(0.456 0.024 150 / 0.2);
+  --shadow-lift: 0 18px 34px -20px oklch(0.55 0.207 2.5 / 0.3);
+}
+
+:root {
+  --radius: 0.5rem;
+
+  --background: oklch(0.975 0.010 206);
+  --foreground: oklch(0.456 0.024 149.7);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.456 0.024 149.7);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.456 0.024 149.7);
+
+  --primary: oklch(0.550 0.207 2.5);
+  --primary-foreground: oklch(1 0 0);
+  --primary-hover: oklch(0.49 0.19 2.5);
+
+  --secondary: oklch(0.932 0.026 205.8);
+  --secondary-foreground: oklch(0.456 0.024 149.7);
+  --muted: oklch(0.932 0.026 205.8);
+  --muted-foreground: oklch(0.53 0.025 150);
+  --accent: oklch(0.891 0.037 324.5);
+  --accent-foreground: oklch(0.49 0.19 2.5);
+
+  --destructive: oklch(0.56 0.14 25);
+  --destructive-foreground: oklch(1 0 0);
+  --success: oklch(0.52 0.09 146);
+  --success-foreground: oklch(1 0 0);
+  --warning: oklch(0.72 0.14 85);
+  --warning-foreground: oklch(0.22 0 0);
+
+  --border: oklch(0.842 0.029 207.4 / 0.65);
+  --input: oklch(0.842 0.029 207.4);
+  --ring: oklch(0.550 0.207 2.5);
+
+  --ink: oklch(0.456 0.024 149.7);
+  --ink-foreground: oklch(0.975 0.010 206);
+
+  --lotus-aqua: oklch(0.932 0.026 205.8);
+  --lotus-bluegray: oklch(0.842 0.029 207.4);
+  --lotus-sage: oklch(0.794 0.050 146);
+  --lotus-charcoal: oklch(0.456 0.024 149.7);
+  --lotus-raspberry: oklch(0.550 0.207 2.5);
+  --lotus-lilac: oklch(0.891 0.037 324.5);
+
+  --pos-bg: oklch(0.975 0.010 206);
+  --pos-card: oklch(1 0 0);
+  --pos-sidebar: oklch(0.456 0.024 149.7);
+  --pos-sidebar-text: oklch(0.88 0.025 206);
+  --pos-sidebar-active: oklch(1 0 0);
+  --pos-text: oklch(0.38 0.022 150);
+  --pos-text-muted: oklch(0.56 0.025 150);
+  --pos-border: oklch(0.842 0.029 207.4 / 0.7);
+
+  --chart-1: oklch(0.550 0.207 2.5);
+  --chart-2: oklch(0.794 0.050 146);
+  --chart-3: oklch(0.72 0.14 85);
+  --chart-4: oklch(0.56 0.14 25);
+  --chart-5: oklch(0.45 0.02 90);
+
+  --sidebar: oklch(0.456 0.024 149.7);
+  --sidebar-foreground: oklch(0.88 0.025 206);
+  --sidebar-primary: oklch(0.550 0.207 2.5);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.39 0.028 150);
+  --sidebar-accent-foreground: oklch(1 0 0);
+  --sidebar-border: oklch(0.58 0.03 150);
+  --sidebar-ring: oklch(0.550 0.207 2.5);
+
+  --invoice-paper: oklch(0.985 0.006 206);
+  --invoice-ink: oklch(0.456 0.024 149.7);
+  --invoice-muted: oklch(0.58 0.025 150);
+  --invoice-line: oklch(0.842 0.029 207.4);
+  --invoice-head: oklch(0.456 0.024 149.7);
+  --invoice-head-foreground: oklch(0.98 0.006 95);
+  --invoice-gold: oklch(0.550 0.207 2.5);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: 0;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  color: var(--primary-foreground);
+  background: var(--primary);
+}
+
+@utility font-display {
+  font-family: var(--font-display);
+}
+
+@utility reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
+
+  &[data-visible="true"] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@utility lift {
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lift);
+  }
+}
+
+@utility treatment-flow {
+  display: inline-flex;
+  min-width: max-content;
+  animation: treatment-flow 34s linear infinite;
+}
+
+@keyframes treatment-flow {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal,
+  .lift,
+  .treatment-flow {
+    animation: none;
+    transition: none;
+  }
+}
+
+@utility tabular {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
+/* Thermal 80mm receipt printing */
+.receipt-print {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.45;
+  white-space: pre-wrap;
+}
+
+/* A4 invoice sheet */
+.invoice-print {
+  width: 190mm;
+  margin-inline: auto;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* Preview-only scaling wrapper: never affects the printed sheet. */
+.print-scale {
+  transform-origin: top center;
+}
+
+/* Clone target used only while printing. */
+#print-root {
+  display: none;
+}
+
+@media print {
+  html.printing body > *:not(#print-root) {
+    display: none !important;
+  }
+
+  html.printing,
+  html.printing body {
+    background: #fff !important;
+  }
+
+  #print-root {
+    display: block;
+    background: #fff;
+  }
+
+  #print-root .print-sheet {
+    color: #000;
+    background: #fff;
+    box-shadow: none;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  #print-root .receipt-print.print-sheet {
+    width: 80mm;
+    padding: 4mm;
+  }
+
+  #print-root .invoice-print.print-sheet {
+    width: 100%;
+    margin: 0;
+  }
+
+  #print-root .invoice-print.print-sheet .invoice-body {
+    padding: 4mm 6mm;
+  }
+}
+
+

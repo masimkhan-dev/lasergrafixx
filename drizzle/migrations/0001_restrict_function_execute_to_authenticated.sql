@@ -1,0 +1,20 @@
+REVOKE EXECUTE ON FUNCTION public.generate_sale_number() FROM anon, authenticated, public;
+REVOKE EXECUTE ON FUNCTION public.has_role(uuid, public.app_role) FROM anon, public;
+REVOKE EXECUTE ON FUNCTION public.is_active_staff() FROM anon, public;
+REVOKE EXECUTE ON FUNCTION public.is_admin() FROM anon, public;
+REVOKE EXECUTE ON FUNCTION public.ensure_profile() FROM anon, public;
+REVOKE EXECUTE ON FUNCTION public.create_sale_with_payments(uuid, jsonb, numeric, numeric, text, text) FROM anon, public;
+REVOKE EXECUTE ON FUNCTION public.add_payment_to_sale(uuid, numeric, text, text) FROM anon, public;
+REVOKE EXECUTE ON FUNCTION public.void_sale(uuid) FROM anon, public;
+REVOKE EXECUTE ON FUNCTION public.get_customer_totals(uuid) FROM anon, public;
+REVOKE EXECUTE ON FUNCTION public.customer_stats() FROM anon, public;
+
+GRANT EXECUTE ON FUNCTION public.ensure_profile() TO authenticated;
+GRANT EXECUTE ON FUNCTION public.create_sale_with_payments(uuid, jsonb, numeric, numeric, text, text) TO authenticated;
+GRANT EXECUTE ON FUNCTION public.add_payment_to_sale(uuid, numeric, text, text) TO authenticated;
+GRANT EXECUTE ON FUNCTION public.void_sale(uuid) TO authenticated;
+GRANT EXECUTE ON FUNCTION public.get_customer_totals(uuid) TO authenticated;
+GRANT EXECUTE ON FUNCTION public.customer_stats() TO authenticated;
+GRANT EXECUTE ON FUNCTION public.has_role(uuid, public.app_role) TO authenticated;
+GRANT EXECUTE ON FUNCTION public.is_active_staff() TO authenticated;
+GRANT EXECUTE ON FUNCTION public.is_admin() TO authenticated;

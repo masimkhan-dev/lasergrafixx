@@ -1,0 +1,34 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1790571796055,
+      "tag": "0000_laser_grafix_pos_schema",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1790572777765,
+      "tag": "0001_restrict_function_execute_to_authenticated",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1790573970393,
+      "tag": "0002_real_clinic_data_and_price_list",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1790580996687,
+      "tag": "0003_packages_and_day_end_closing",
+      "breakpoints": true
+    }
+  ]
+}
