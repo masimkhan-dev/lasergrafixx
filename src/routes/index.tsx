@@ -443,8 +443,8 @@ function ContactForm() {
           <Input id="c-name" name="name" required placeholder="Your name" />
         </div>
         <div className="space-y-2">
-          <Label htmlFor="c-phone">Phone</Label>
-          <Input id="c-phone" name="phone" required placeholder="03XX-XXXXXXX" />
+          <Label htmlFor="c-phone">Phone (Optional)</Label>
+          <Input id="c-phone" name="phone" placeholder="03XX-XXXXXXX (optional)" />
         </div>
         <div className="space-y-2">
           <Label htmlFor="c-message">Message</Label>

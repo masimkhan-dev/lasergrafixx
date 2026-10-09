@@ -86,8 +86,12 @@ function Customers() {
   const create = useMutation({
     mutationFn: async () => {
       if (!name.trim()) throw new Error("Name is required");
-      const normalized = normalizePhone(phone);
-      if (!isValidPkPhone(normalized)) throw new Error("Phone must look like 03XX-XXXXXXX");
+      const phoneTrimmed = phone.trim();
+      let normalized: string | null = null;
+      if (phoneTrimmed) {
+        normalized = normalizePhone(phoneTrimmed);
+        if (!isValidPkPhone(normalized)) throw new Error("Phone must look like 03XX-XXXXXXX");
+      }
       const { error } = await supabase
         .from("customers")
         .insert({ name: name.trim(), phone: normalized, gender: gender || null });
@@ -158,7 +162,7 @@ function Customers() {
                   className="cursor-pointer border-t border-pos-border hover:bg-pos-bg"
                 >
                   <td className="px-5 py-3 font-medium">{customer.name}</td>
-                  <td className="tabular px-5 py-3">{customer.phone}</td>
+                  <td className="tabular px-5 py-3">{customer.phone || "—"}</td>
                   <td className="tabular px-5 py-3">{s?.total_visits ?? 0}</td>
                   <td className="tabular px-5 py-3">{pkr(s?.total_spent ?? 0)}</td>
                   <td className="px-5 py-3">{s?.last_visit ? dateOnly(s.last_visit) : "—"}</td>
@@ -181,7 +185,7 @@ function Customers() {
         <DialogContent>
           <DialogHeader>
             <DialogTitle className="font-sans">Add customer</DialogTitle>
-            <DialogDescription>Phone numbers use the 03XX-XXXXXXX format.</DialogDescription>
+            <DialogDescription>Name is required. Phone is optional (03XX-XXXXXXX).</DialogDescription>
           </DialogHeader>
           <div className="space-y-4">
             <div className="space-y-2">
@@ -189,10 +193,10 @@ function Customers() {
               <Input id="c-name" value={name} onChange={(e) => setName(e.target.value)} />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="c-phone">Phone *</Label>
+              <Label htmlFor="c-phone">Phone (Optional)</Label>
               <Input
                 id="c-phone"
-                placeholder="03XX-XXXXXXX"
+                placeholder="03XX-XXXXXXX (optional)"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
               />
@@ -231,7 +235,7 @@ function Customers() {
         <DialogContent className="max-h-[90vh] max-w-2xl overflow-y-auto">
           <DialogHeader>
             <DialogTitle className="font-sans">{detail?.name}</DialogTitle>
-            <DialogDescription>{detail?.phone}</DialogDescription>
+            <DialogDescription>{detail?.phone || "No phone recorded"}</DialogDescription>
           </DialogHeader>
 
           {detail && (

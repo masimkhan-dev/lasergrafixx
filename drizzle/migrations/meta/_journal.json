@@ -29,6 +29,13 @@
       "when": 1790580996687,
       "tag": "0003_packages_and_day_end_closing",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1790600000000,
+      "tag": "0004_make_customer_phone_optional",
+      "breakpoints": true
     }
   ]
 }

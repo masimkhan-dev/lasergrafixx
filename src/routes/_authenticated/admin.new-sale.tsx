@@ -122,8 +122,12 @@ function NewSale() {
   const createCustomer = useMutation({
     mutationFn: async () => {
       if (!newName.trim()) throw new Error("Name is required");
-      const phone = normalizePhone(newPhone);
-      if (!isValidPkPhone(phone)) throw new Error("Phone must look like 03XX-XXXXXXX");
+      const phoneTrimmed = newPhone.trim();
+      let phone: string | null = null;
+      if (phoneTrimmed) {
+        phone = normalizePhone(phoneTrimmed);
+        if (!isValidPkPhone(phone)) throw new Error("Phone must look like 03XX-XXXXXXX");
+      }
       const { data, error } = await supabase
         .from("customers")
         .insert({ name: newName.trim(), phone, gender: newGender || null })
@@ -200,7 +204,7 @@ function NewSale() {
         {customer ? (
           <div className="flex flex-wrap items-center gap-3">
             <span className="inline-flex items-center gap-2 rounded-full bg-accent px-4 py-2 text-sm font-semibold text-primary">
-              {customer.name} · {customer.phone}
+              {customer.name} {customer.phone ? `· ${customer.phone}` : ""}
             </span>
             <Button variant="ghost" size="sm" onClick={() => setCustomer(null)}>
               Change
@@ -234,7 +238,7 @@ function NewSale() {
                   >
                     <span className="text-sm">
                       <span className="font-semibold">{c.name}</span>{" "}
-                      <span className="text-pos-text-muted">{c.phone}</span>
+                      <span className="text-pos-text-muted">{c.phone || "—"}</span>
                     </span>
                     <Button size="sm" variant="outline" onClick={() => setCustomer(c)}>
                       Select
@@ -262,10 +266,10 @@ function NewSale() {
                   <Input id="n-name" value={newName} onChange={(e) => setNewName(e.target.value)} />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="n-phone">Phone *</Label>
+                  <Label htmlFor="n-phone">Phone (Optional)</Label>
                   <Input
                     id="n-phone"
-                    placeholder="03XX-XXXXXXX"
+                    placeholder="03XX-XXXXXXX (optional)"
                     value={newPhone}
                     onChange={(e) => setNewPhone(e.target.value)}
                   />
